@@ -6,7 +6,3 @@
 	path = roles/awx-pre-reqs
 	url = https://github.com/benjiboi214/ansible-role-awx.git
 	branch = develop
-[submodule "roles/awx-run-installer"]
-	path = roles/awx-run-installer
-	url = https://github.com/benjiboi214/awx.git
-	branch = develop
