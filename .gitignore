@@ -1,2 +1,12 @@
+# Security Reasons
 vault_password
+
+# OS
 .DS_Store
+
+# Ansible
+*.retry
+
+# Testing tools
+.vagrant/
+Vagrantfile
