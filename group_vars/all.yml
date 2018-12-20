@@ -1,0 +1,4 @@
+
+### Users Role
+# Ensures the role runs the right fs path
+role_as_git_submodule: true
