@@ -1,0 +1,12 @@
+[submodule "submodules/users"]
+	path = submodules/users
+	url = https://github.com/benjiboi214/systemiphus-ansible-users
+	branch = develop
+[submodule "submodules/awx-installer"]
+	path = submodules/awx-installer
+	url = https://github.com/ansible/awx.git
+	branch = devel
+[submodule "submodules/ansible-role-awx"]
+	path = submodules/ansible-role-awx
+	url = https://github.com/benjiboi214/ansible-role-awx.git
+	branch = master
