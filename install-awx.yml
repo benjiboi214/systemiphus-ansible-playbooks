@@ -9,8 +9,8 @@
     pip_install_packages:
       - name: docker-py
 
-  vars_files:
-    - secrets/awx/vault.yml
+  # vars_files:
+  #   - secrets/awx/vault.yml
 
   roles:
     - geerlingguy.repo-epel
