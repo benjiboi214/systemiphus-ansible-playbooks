@@ -1,4 +1,4 @@
 [submodule "roles/users"]
 	path = roles/users
 	url = https://github.com/benjiboi214/systemiphus-ansible-users
-	branch = master
+	branch = develop
