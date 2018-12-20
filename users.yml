@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: true
+  become: yes
+  become_method: sudo
+
+  vars_files:
+    - secrets/all/vault.yml
+  
+  roles:
+    - users
