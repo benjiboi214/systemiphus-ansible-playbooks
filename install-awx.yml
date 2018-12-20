@@ -19,6 +19,4 @@
     - geerlingguy.docker
     - geerlingguy.pip
     - geerlingguy.nodejs
-    - roles/awx-pre-reqs
-    - roles/awx-run-installer
-    
+    - roles/awx-install
