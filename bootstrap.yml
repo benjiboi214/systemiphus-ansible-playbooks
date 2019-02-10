@@ -1,4 +1,16 @@
 ---
+
+- hosts: management
+  gather_facts: true
+  become: true
+  become_method: sudo
+
+  vars_files:
+    - secrets/all/vault.yml
+
+  roles:
+    - roles/users
+
 - hosts: awx
   gather_facts: true
   become: true
@@ -8,7 +20,7 @@
     nodejs_version: "6.x"
     pip_install_packages:
       - name: docker-py
-
+  
   vars_files:
     - secrets/awx/vault.yml
 
