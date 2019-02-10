@@ -2,3 +2,7 @@
 	path = roles/users
 	url = https://github.com/benjiboi214/systemiphus-ansible-users
 	branch = develop
+[submodule "roles/awx-install"]
+	path = roles/awx-install
+	url = https://github.com/benjiboi214/ansible-role-awx.git
+	branch = develop
