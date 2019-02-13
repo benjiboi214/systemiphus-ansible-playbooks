@@ -16,12 +16,19 @@ awx.int.systemiphus.com
 [awx:vars]
 ansible_user=centos
 
+[jenkins]
+jenkins.int.systemiphus.com
+
+[jenkins:vars]
+ansible_user=centos
+
 [public:children]
 bastion
 nat
 
 [private:children]
 awx
+jenkins
 
 [management:children]
 public
