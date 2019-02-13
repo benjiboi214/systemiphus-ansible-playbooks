@@ -8,6 +8,7 @@
   vars:
     - jenkins_package_state: latest
     - jenkins_hostname: jenkins.int.systemiphus.com
+    - jenkins_http_port: 80
 
   roles:
     - geerlingguy.java
