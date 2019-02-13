@@ -1,0 +1,14 @@
+---
+
+- hosts: jenkins
+  gather_facts: true
+  become: true
+  become_method: sudo
+
+  vars:
+    - jenkins_package_state: latest
+    - jenkins_hostname: jenkins.int.systemiphus.com
+
+  roles:
+    - geerlingguy.java
+    - geerlingguy.jenkins
