@@ -10,12 +10,6 @@ nat.systemiphus.com
 [nat:vars]
 ansible_user=ec2-user
 
-[awx]
-awx.int.systemiphus.com
-
-[awx:vars]
-ansible_user=centos
-
 [jenkins]
 jenkins.int.systemiphus.com
 
@@ -27,7 +21,6 @@ bastion
 nat
 
 [private:children]
-awx
 jenkins
 
 [management:children]
