@@ -1,0 +1,27 @@
+---
+
+- hosts: all
+  gather_facts: yes
+  become: true
+  become_method: sudo
+  
+  vars_files:
+    # roles/users
+    - secrets/all/vault.yml
+  
+  vars:
+    # roles/base
+    apt_packages:
+      - python3-pip
+    python_packages: 
+        - passlib
+    # debops.fail2ban
+    fail2ban_jails:
+      - name: 'ssh'
+        enabled: true
+        comment: "This is to lock out SSH"
+
+  roles:
+    - roles/base
+    - roles/users
+    - debops.fail2ban

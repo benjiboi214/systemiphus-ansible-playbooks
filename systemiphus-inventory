@@ -1,41 +1,18 @@
 [bastion]
-bastion.systemiphus.com
+3.104.162.14
 
 [bastion:vars]
-ansible_user=openvpnas
 
-[nat]
-nat.systemiphus.com
+[ubuntu:children]
+bastion
 
-[nat:vars]
-ansible_user=ec2-user
-
-[jenkins]
-jenkins.int.systemiphus.com
-
-[jenkins:vars]
-ansible_user=centos
-
-[mmpl]
-mmpl.systemiphus.com
-
-[mmpl:vars]
+[ubuntu:vars]
 ansible_user=ubuntu
 ansible_python_interpreter=/usr/bin/python3
 
-[public:children]
+[all:children]
 bastion
-nat
-mmpl
 
-[private:children]
-jenkins
-
-[management:children]
-public
-private
-
-[management:vars]
-ansible_connection=ssh
-ansible_private_key_file="/Users/ben/Develop/infrastructure/systemiphus-infra/systemiphus_ultimate_access.pem"
-system_timezone=Australia/Melbourne
+[all:vars]
+ansible_private_key_file="/Users/ben/Develop/systemiphus/shared-infrastructure/terraform-provisioner.pem"
+server_locale=en_US.UTF-8
