@@ -5,3 +5,9 @@
 [submodule "roles/base"]
 	path = roles/base
 	url = git@github.com:benjiboi214/systemiphus-ansible-base.git
+[submodule "roles/openvpn"]
+	path = roles/openvpn
+	url = git@github.com:benjiboi214/systemiphus-ansible-openvpn.git
+[submodule "roles/nat"]
+	path = roles/nat
+	url = git@github.com:benjiboi214/systemiphus-ansible-nat.git
