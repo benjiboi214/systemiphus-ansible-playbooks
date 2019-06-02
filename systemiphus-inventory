@@ -16,9 +16,17 @@ jenkins.int.systemiphus.com
 [jenkins:vars]
 ansible_user=centos
 
+[mmpl]
+mmpl.systemiphus.com
+
+[mmpl:vars]
+ansible_user=ubuntu
+ansible_python_interpreter=/usr/bin/python3
+
 [public:children]
 bastion
 nat
+mmpl
 
 [private:children]
 jenkins

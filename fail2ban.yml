@@ -1,0 +1,13 @@
+- hosts: bastion
+  gather_facts: true
+  become: true
+  become_method: sudo
+
+  vars:
+    - fail2ban_jails:
+      - name: 'ssh'
+        enabled: true
+        comment: "This is to lock out SSH"
+
+  roles:
+    - debops.fail2ban
