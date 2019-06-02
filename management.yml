@@ -1,0 +1,55 @@
+---
+
+- hosts: all
+  gather_facts: yes
+  become: true
+  become_method: sudo
+  
+  vars_files:
+    # roles/users
+    - secrets/all/vault.yml
+  
+  vars:
+    # roles/base
+    apt_packages:
+      - python3-pip
+    python_packages: 
+        - passlib
+    # debops.fail2ban
+    fail2ban_jails:
+      - name: 'ssh'
+        enabled: true
+        comment: "This is to lock out SSH"
+
+  roles:
+    - roles/base
+    - roles/users
+    - debops.fail2ban
+
+- hosts: bastion
+  gather_facts: yes
+  become: true
+  become_method: sudo
+
+  vars:
+    openvpn_key_country: AU
+    openvpn_key_province: VIC
+    openvpn_key_city: Melbourne
+    openvpn_key_org: Systemiphus
+    openvpn_key_email: ben.elliot@systemiphus.org
+    openvpn_key_ou: Systemiphus_OU
+    openvpn_key_name: systemiphus_vpn
+    openvpn_clients:
+      - belliot
+    openvpn_route_traffic: false
+    openvpn_bridge: false
+    openvpn_route_ranges:
+      - 10.1.0.0 255.255.0.0
+    openvpn_unified_client_profiles: true
+    openvpn_use_pam: true
+    openvpn_download_clients: true
+    openvpn_download_dir: ./
+
+  roles:
+    - roles/openvpn
+    - roles/nat
