@@ -47,6 +47,8 @@
       - 10.1.0.0 255.255.0.0
     openvpn_unified_client_profiles: true
     openvpn_use_pam: true
+    openvpn_download_clients: true
+    openvpn_download_dir: ./
 
   roles:
     - roles/openvpn

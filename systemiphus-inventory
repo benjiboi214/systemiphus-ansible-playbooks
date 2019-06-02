@@ -1,5 +1,5 @@
 [bastion]
-3.104.162.14
+3.105.219.78
 
 [bastion:vars]
 
@@ -14,4 +14,4 @@ ansible_python_interpreter=/usr/bin/python3
 bastion
 
 [all:vars]
-ansible_private_key_file="/Users/ben/Develop/systemiphus/shared-infrastructure/terraform-provisioner.pem"
+ansible_private_key_file="/Users/ben/Develop/systemiphus/terraform/terraform-provisioner.pem"
