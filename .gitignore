@@ -10,3 +10,7 @@ vault_password
 # Testing tools
 .vagrant/
 Vagrantfile
+
+
+# Created Files
+*.ovpn

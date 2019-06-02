@@ -1,7 +1,7 @@
 # from galaxy
-- src: geerlingguy.java
-- src: geerlingguy.jenkins
-- src: geerlingguy.git
-- src: nmusatti.source_python
+# - src: geerlingguy.java
+# - src: geerlingguy.jenkins
+# - src: geerlingguy.git
+# - src: nmusatti.source_python
 - src: debops.fail2ban
-- src: geerlingguy.docker
+# - src: geerlingguy.docker
