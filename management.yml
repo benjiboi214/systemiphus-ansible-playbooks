@@ -14,17 +14,20 @@
     apt_packages:
       - python3-pip
     python_packages: 
-        - passlib
+      - passlib
     # debops.fail2ban
     fail2ban_jails:
       - name: 'ssh'
         enabled: true
         comment: "This is to lock out SSH"
+    # Python install
+    python_versions: [2.7, 3.6]
 
   roles:
     - roles/base
     - roles/users
     - debops.fail2ban
+    - Stouts.python
 
 - hosts: bastion
   gather_facts: yes
@@ -73,5 +76,4 @@
     - geerlingguy.java
     - geerlingguy.jenkins
     - geerlingguy.git
-    - nmusatti.source_python
     - geerlingguy.docker
