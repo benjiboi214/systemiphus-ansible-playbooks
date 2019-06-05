@@ -1,10 +1,14 @@
 [bastion]
-3.105.219.78
+54.79.10.52
+
+[jenkins]
+10.1.1.10
 
 [bastion:vars]
 
 [ubuntu:children]
 bastion
+jenkins
 
 [ubuntu:vars]
 ansible_user=ubuntu
@@ -12,6 +16,7 @@ ansible_python_interpreter=/usr/bin/python3
 
 [all:children]
 bastion
+jenkins
 
 [all:vars]
 ansible_private_key_file="/Users/ben/Develop/systemiphus/terraform/terraform-provisioner.pem"
