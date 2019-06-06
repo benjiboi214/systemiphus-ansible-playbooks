@@ -5,3 +5,4 @@
 - src: Stouts.python
 - src: debops.fail2ban
 - src: geerlingguy.docker
+- src: geerlingguy.nginx
