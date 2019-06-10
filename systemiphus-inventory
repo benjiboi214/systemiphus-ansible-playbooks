@@ -1,14 +1,18 @@
 [bastion]
-54.79.10.52
+vpn.systemiphus.com
 
 [jenkins]
-10.1.1.10
+jenkins.int.systemiphus.com
+
+[mmpl]
+staging.mmpl.systemiphus.com
 
 [bastion:vars]
 
 [ubuntu:children]
 bastion
 jenkins
+mmpl
 
 [ubuntu:vars]
 ansible_user=ubuntu
@@ -17,6 +21,7 @@ ansible_python_interpreter=/usr/bin/python3
 [all:children]
 bastion
 jenkins
+mmpl
 
 [all:vars]
 ansible_private_key_file="/Users/ben/Develop/systemiphus/terraform/terraform-provisioner.pem"
