@@ -1,0 +1,39 @@
+---
+
+- hosts: webservers
+  gather_facts: yes
+  become: true
+  become_method: sudo
+  
+  vars_files:
+    # roles/users
+    - secrets/webservers/vault.yml
+  
+  vars:
+    # Git
+    - git_install_from_source: true
+    - git_install_from_source_force_update: true
+    - git_install_path: "/usr"
+    - git_version: "2.20.1"
+  
+  roles:
+    - roles/users
+    - geerlingguy.git
+    - geerlingguy.docker
+  
+  tasks:
+    - name: Ensure git is not checking filemode changes
+      command: git config --global core.filemode false
+    - name: Check out the project repo.
+      git:
+        accept_hostkey: yes
+        force: yes
+        repo: "{{ git_repo_url }}"
+        dest: "{{ project_dir }}"
+        version: "{{ git_branch }}"
+    - name: Change folder perms for django user
+      file:
+        dest: "{{ project_dir }}"
+        owner: django
+        group: django
+        recurse: yes

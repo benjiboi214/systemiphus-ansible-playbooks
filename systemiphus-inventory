@@ -5,9 +5,14 @@ vpn.systemiphus.com
 jenkins.int.systemiphus.com
 
 [mmpl]
-staging.mmpl.systemiphus.com
+staging.mmpl.systemiphus.com git_branch=stripback_django
 
-[bastion:vars]
+[mmpl:vars]
+git_repo_url=https://github.com/benjiboi214/mmpl-backend.git
+project_dir=/opt/mmpl_backend
+
+[webservers:children]
+mmpl
 
 [ubuntu:children]
 bastion
