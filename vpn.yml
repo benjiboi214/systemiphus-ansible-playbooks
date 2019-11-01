@@ -1,0 +1,63 @@
+- hosts: bastion
+  gather_facts: yes
+  become: true
+  become_method: sudo
+
+  vars:
+    openvpn_key_country: AU
+    openvpn_key_province: VIC
+    openvpn_key_city: Melbourne
+    openvpn_key_org: Systemiphus
+    openvpn_key_email: ben.elliot@systemiphus.org
+    openvpn_key_ou: Systemiphus_OU
+    openvpn_key_name: systemiphus_vpn
+    openvpn_clients:
+      - belliot
+    openvpn_route_traffic: false
+    openvpn_bridge: false
+    openvpn_route_ranges:
+      - 10.1.0.0 255.255.0.0
+    openvpn_unified_client_profiles: true
+    openvpn_use_pam: true
+    openvpn_download_clients: true
+    openvpn_download_dir: ./
+
+  roles:
+    - roles/openvpn
+    - roles/nat
+
+- hosts: jenkins
+  gather_facts: true
+  become: true
+  become_method: sudo
+
+  vars:
+    # Ansible vars
+    - ansible_install_method: pip
+    - ansible_install_version_pip: ''
+    # Docker vars
+    - docker_package_state: 'latest'
+    # Jenkins
+    - jenkins_package_state: latest
+    - jenkins_hostname: jenkins.int.systemiphus.com
+    # Python
+    - python_release: 3.7.1
+    - python_install_dir: /usr
+    # Git
+    - git_install_from_source: true
+    - git_install_from_source_force_update: true
+    - git_install_path: "/usr"
+    - git_version: "2.20.1"
+    # Nginx
+    - nginx_vhosts:
+      - server_name: "jenkins.int.systemiphus.com"
+        template: "{{ playbook_dir }}/files/templates/jenkins.int.systemiphus.com.j2"
+
+
+  roles:
+    - geerlingguy.ansible
+    - geerlingguy.java
+    - geerlingguy.jenkins
+    - geerlingguy.git
+    - geerlingguy.docker
+    - geerlingguy.nginx
