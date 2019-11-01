@@ -1,0 +1,49 @@
+---
+
+- hosts: jenkins
+  gather_facts: yes
+  become_user: jenkins
+  become: yes
+
+  tasks:
+    - name: "Create the ssh key for jenkins host to access webservers over SSH"
+      openssh_keypair:
+        path: "~/.ssh/id_rsa"
+        type: rsa
+        size: 2048
+      register: jenkins_user_ssh_key
+
+    - name: "Add Jenkins SSH public key to dummy host"
+      add_host:
+        name:   "JENKINS_VARS"
+        public_key:  "{{ jenkins_user_ssh_key.public_key }}"
+  
+- hosts: webservers
+  gather_facts: yes
+  become: true
+  become_method: sudo
+  
+  vars_files:
+    # roles/users
+    - secrets/webservers/vault.yml
+  
+  vars:
+    # Git
+    - git_install_from_source: true
+    - git_install_from_source_force_update: true
+    - git_install_path: "/usr"
+    - git_version: "2.20.1"
+    # Docker vars
+    - docker_package_state: 'latest'
+  
+  roles:
+    - roles/users
+    - geerlingguy.git
+    - geerlingguy.docker
+  
+  tasks:
+    - name: Ensure hosts have the jenkins user SSH Key
+      authorized_key:
+        user: django
+        state: present
+        key: "{{ hostvars['JENKINS_VARS']['public_key'] }}"
